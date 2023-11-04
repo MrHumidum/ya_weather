@@ -2,25 +2,26 @@ import requests
 from PyQt5 import uic
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
-import io
-import sys
+import io, os, sys
+from dotenv import load_dotenv
+
+load_dotenv()
+
+MY_TOKEN = os.getenv("MY_TOKEN")
 
 
 def openweathermap(city_name):
-    appid = "1cb355434ede36bb01e202c3bda0aa4a"
+    appid = MY_TOKEN
     try:
         res = requests.get(
             f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={appid}&lang=ru&units=metric")
         data = res.json()
-        print("City:", city_name)
-        print("conditions:", data['weather'][0]['description'])
-        print("temp:", data['main']['temp'])
-        print("temp_min:", data['main']['temp_min'])
-        print("temp_max:", data['main']['temp_max'])
-        return data['weather'][0]['icon']
+        return {"Погода": data['weather'][0]['description'],
+                "Температура": data['main']['temp']}
     except Exception as e:
-        print("Exception (weather):", e)
+        print(e)
         pass
+
 
 
 template = """<?xml version="1.0" encoding="UTF-8"?>
@@ -144,13 +145,18 @@ class Pogoda(QMainWindow):
 
         f = io.StringIO(template)
         uic.loadUi(f, self)
+        self.pushButton.clicked.connect(self.run)
 
-    def initUI(self):
-        self.label_picture = QLabel(self)
-        pixmap = QPixmap(f"ico/01d@2x.png")
-        self.label_picture.setPixmap(pixmap)
-        self.pushButton.
-        self.label_picture.setScaledContents(True)  # Растягиваем изображение, чтобы оно вписалось в QLabel
+    def run(self):
+        info = (openweathermap(self.poisk.displayText()))
+        self.history_city.append(self.poisk.text())
+        self.label.setText(f'{info}')
+
+
+# a = {'icoid': data['weather'][0]['icon'],
+#                 "City": city_name,
+#                 "conditions": data['weather'][0]['description'],
+#                 "temp": data['main']['temp']}
 
 
 if __name__ == '__main__':
