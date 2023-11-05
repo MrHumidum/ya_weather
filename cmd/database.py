@@ -1,6 +1,7 @@
 import psycopg2
 import os
 from dotenv import load_dotenv
+import datetime
 
 load_dotenv()
 
@@ -17,7 +18,7 @@ def connect_to_database():
         conn.autocommit = True
         return conn
     except Exception as e:
-        print('Error:', e)
+        print('Error connect_to_database:', e)
         return None
 
 
@@ -31,10 +32,10 @@ def get_weather():
     if conn:
         try:
             with conn.cursor() as cur:
-                cur.execute("SELECT city_name, temp, conditions FROM weather")
+                cur.execute("SELECT time, city_name, temp, conditions FROM weather")
                 return cur.fetchall()
         except Exception as e:
-            print('Error:', e)
+            print('Error get_weather:', e)
         finally:
             close_database_connection(conn)
 
@@ -46,10 +47,26 @@ def insert_weather(a):
     if conn:
         try:
             with conn.cursor() as cur:
+                current_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                 cur.execute(
-                    "INSERT INTO weather (city_name, temp, conditions) VALUES (%s, %s, %s)", a
+                    "INSERT INTO weather (time, city_name, temp, conditions) VALUES (%s, %s, %s, %s)",
+                    (current_time, a[0], a[1], a[2])
                 )
         except Exception as e:
-            print('Error:', e)
+            print('Error insert_weather:', e)
+        finally:
+            close_database_connection(conn)
+
+
+def clear_weather():
+    conn = connect_to_database()
+    if conn:
+        try:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "DELETE FROM weather",
+                )
+        except Exception as e:
+            print('Error clear_weather:', e)
         finally:
             close_database_connection(conn)

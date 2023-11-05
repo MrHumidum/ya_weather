@@ -1,9 +1,9 @@
 from PyQt5 import uic
 from PyQt5.QtGui import QPixmap, QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableView
-import io, os, sys, requests
+import os, sys, requests
 from dotenv import load_dotenv
-from database import connect_to_database, get_weather, insert_weather
+from database import get_weather, insert_weather
 
 load_dotenv()
 
@@ -26,7 +26,7 @@ def openweathermap(city_name):
                 "Погода": data['weather'][0]['description'],
                 "Температура": int(data['main']['temp'])}
     except Exception as e:
-        print(e)
+        print("Error openweathermap:", e)
         pass
 
 
@@ -54,7 +54,7 @@ class Pogoda(QMainWindow):
 
         self.model.clear()
 
-        self.model.setHorizontalHeaderLabels(["Город", "Температура", "Погода"])
+        self.model.setHorizontalHeaderLabels(["Дата и время", "Город", "Температура", "Погода"])
 
         for row in data:
             items = [QStandardItem(str(item)) for item in row]
