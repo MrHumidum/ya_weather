@@ -22,7 +22,8 @@ def openweathermap(city_name):
         res = requests.get(
             f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={appid}&lang=ru&units=metric")
         data = res.json()
-        return {"Погода": data['weather'][0]['description'],
+        return {'icoid': data['weather'][0]['icon'],
+                "Погода": data['weather'][0]['description'],
                 "Температура": int(data['main']['temp'])}
     except Exception as e:
         print(e)
@@ -41,7 +42,12 @@ class Pogoda(QMainWindow):
     def run(self):
         city_name = self.poisk.displayText()
         weather_info = openweathermap(city_name)
-        self.label.setText(f'Погода: {weather_info["Погода"]}, Температура: {weather_info["Температура"]}')
+        self.label.setText(f'Погода: {weather_info["Погода"]}')
+        self.label_2.setText(f'Температура: {weather_info["Температура"]}°C')
+
+        pixmap = QPixmap(f"cmd/ico/{weather_info['icoid']}@2x.png")
+        self.label_picture.setPixmap(pixmap)
+        self.label_picture.setScaledContents(True)
         insert_weather((city_name, weather_info["Температура"], weather_info["Погода"]))
 
         data = get_weather()
