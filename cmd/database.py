@@ -31,7 +31,7 @@ def get_weather():
     if conn:
         try:
             with conn.cursor() as cur:
-                cur.execute("SELECT * FROM weather")
+                cur.execute("SELECT city_name, temp, conditions FROM weather")
                 return cur.fetchall()
         except Exception as e:
             print('Error:', e)
