@@ -27,7 +27,7 @@ def openweathermap(city_name):
 class Pogoda(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('cmd/templates/template.ui', self)
+        uic.loadUi('templates/template.ui ', self)
         self.pushButton.clicked.connect(self.run)
         self.table_view = self.findChild(QTableView, 'tableView')
 
@@ -39,7 +39,7 @@ class Pogoda(QMainWindow):
         self.label.setText(f'Погода: {weather_info["Погода"]}')
         self.label_2.setText(f'Температура: {weather_info["Температура"]}°C')
 
-        pixmap = QPixmap(f"cmd/ico/{weather_info['icoid']}@2x.png")
+        pixmap = QPixmap(f"ico/{weather_info['icoid']}@2x.png")
         self.label_picture.setPixmap(pixmap)
         self.label_picture.setScaledContents(True)
         insert_weather((city_name, weather_info["Температура"], weather_info["Погода"]))
