@@ -8,12 +8,6 @@ from database import get_weather, insert_weather
 load_dotenv()
 
 MY_TOKEN = os.getenv("MY_TOKEN")
-db_config = {'host': os.getenv("host"),
-             'port': os.getenv("port"),
-             'user': os.getenv("user"),
-             'dbname': os.getenv("dbname"),
-             'password': os.getenv("password")
-             }
 
 
 def openweathermap(city_name):
