@@ -70,3 +70,34 @@ def clear_weather():
             print('Error clear_weather:', e)
         finally:
             close_database_connection(conn)
+
+
+def sign_up_func(a):
+    conn = connect_to_database()
+    if conn:
+        try:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "INSERT INTO users (username, password) VALUES (%s, %s)",
+                    a
+                )
+        except Exception as e:
+            print('Error sign_up_func:', e)
+        finally:
+            close_database_connection(conn)
+
+
+def sign_in_func(username, password):
+    conn = connect_to_database()
+    if conn:
+        try:
+            with conn.cursor() as cur:
+                cur.execute(
+                    f"SELECT username,password from users "
+                    f"where username like '{username}' and password like '{password}'",
+                )
+                return cur.fetchall()
+        except Exception as e:
+            print('Error sign_in_func:', e)
+        finally:
+            close_database_connection(conn)
