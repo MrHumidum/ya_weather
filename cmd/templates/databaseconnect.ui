@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>352</width>
-    <height>381</height>
+    <height>380</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>352</width>
-    <height>267</height>
+    <height>380</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -45,6 +45,9 @@
    </property>
    <property name="placeholderText">
     <string>host</string>
+   </property>
+   <property name="clearButtonEnabled">
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLineEdit" name="port">
@@ -188,25 +191,6 @@
     <string>username</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="password">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>280</y>
-     <width>271</width>
-     <height>29</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font-size:14pt; color:rgb(243, 243, 243)</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="placeholderText">
-    <string>password</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="tryconnect">
    <property name="geometry">
     <rect>
@@ -226,6 +210,46 @@
    </property>
    <property name="text">
     <string>Try to connect</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="password">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>280</y>
+     <width>271</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size:14pt; color:rgb(243, 243, 243)</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="placeholderText">
+    <string>password</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="hostt">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>190</y>
+     <width>21</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:rgb(255, 255, 255)</string>
+   </property>
+   <property name="text">
+    <string>.</string>
    </property>
   </widget>
  </widget>

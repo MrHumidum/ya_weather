@@ -1,20 +1,35 @@
 import psycopg2
-import os
-from dotenv import load_dotenv
 import datetime
+import requests
 
-load_dotenv()
+MY_TOKEN = open('txts/token.txt').readline()
+
+
+def openweathermap(city_name):
+    appid = MY_TOKEN
+    try:
+        res = requests.get(
+            f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={appid}&lang=ru&units=metric")
+        data = res.json()
+        return {'icoid': data['weather'][0]['icon'],
+                "Погода": data['weather'][0]['description'],
+                "Температура": int(data['main']['temp'])}
+    except Exception as e:
+        print("Error openweathermap:", e)
+        pass
 
 
 def connect_to_database():
+    host, user, password, port, database = open('txts/databasetxt.txt').readline().split(", ")
     try:
         conn = psycopg2.connect(
-            host=os.getenv("host"),
-            user=os.getenv("user"),
-            password=os.getenv("password"),
-            database=os.getenv("dbname"),
-            port=os.getenv("port")
+            host=host,
+            user=user,
+            password=password,
+            database=database,
+            port=port
         )
+        print('connect_to_database', conn)
         conn.autocommit = True
         return conn
     except Exception as e:
@@ -83,6 +98,7 @@ def sign_up_func(a):
                 )
         except Exception as e:
             print('Error sign_up_func:', e)
+            return 'username'
         finally:
             close_database_connection(conn)
 

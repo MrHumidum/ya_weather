@@ -1,3 +1,4 @@
-.env
 venv
 .idea
+cmd/txts/token.txt
+token.txt
