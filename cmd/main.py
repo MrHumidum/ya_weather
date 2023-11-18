@@ -1,12 +1,18 @@
-from PyQt5 import uic
-from PyQt5.QtGui import QPixmap, QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QApplication, QMainWindow, QTableView
-import os, sys, requests
-from dotenv import load_dotenv
-from database import get_weather, insert_weather
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication
+import sys
+from pyqtclasses import DataBaseConnect
 
-load_dotenv()
+app = QApplication(sys.argv)
+Dialog = QtWidgets.QDialog()
 
+<<<<<<< HEAD
+db_connect = DataBaseConnect()
+db_connect.show()
+
+# Запускаем цикл приложения
+sys.exit(app.exec_())
+=======
 MY_TOKEN = os.getenv("MY_TOKEN")
 
 
@@ -67,3 +73,4 @@ if __name__ == '__main__':
     p = Pogoda()
     p.show()
     sys.exit(app.exec())
+>>>>>>> 9cf5cc4cf5a50a96680070470deb26ad78f05010

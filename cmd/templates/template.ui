@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>720</width>
+    <width>750</width>
     <height>456</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>720</width>
+    <width>750</width>
     <height>456</height>
    </size>
   </property>
@@ -92,7 +92,7 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>50</x>
       <y>330</y>
       <width>71</width>
       <height>41</height>
@@ -116,7 +116,7 @@
      <rect>
       <x>280</x>
       <y>20</y>
-      <width>421</width>
+      <width>451</width>
       <height>391</height>
      </rect>
     </property>
@@ -137,13 +137,32 @@
      <string>Температура:</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>330</y>
+      <width>75</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Карта</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>720</width>
+     <width>750</width>
      <height>21</height>
     </rect>
    </property>
