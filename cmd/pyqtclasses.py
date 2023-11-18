@@ -28,7 +28,7 @@ class MyWindow(QMainWindow):
 
     def load_html_content(self):
         self.web_view.setUrl(QUrl.fromLocalFile(
-            "C:/Users/moydo/PycharmProjects/pythonProject/leaflet-openweathermap-master/example/index.html"))
+            "cmd/leaflet-openweathermap-master/example/index.html"))
 
 
 
@@ -212,8 +212,8 @@ class DataBaseConnect(QDialog):
         self.username.setText("postgres")
 
     def hostfunc(self):
-        self.host.setText("0.tcp.eu.ngrok.io")
-        self.port.setText("14870")
+        self.host.setText(".tcp.eu.ngrok.io")
+        self.port.setText("")
         self.username.setText("postgres")
         self.databasename.setText('weatherforecast')
         self.password.setText('1')
