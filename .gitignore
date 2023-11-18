@@ -1,4 +1,11 @@
 venv
 .idea
+<<<<<<< HEAD
 cmd/txts/token.txt
 token.txt
+=======
+/.idea
+./__pycache__
+cmd/__pycache__
+__pycache__/
+>>>>>>> 9cf5cc4cf5a50a96680070470deb26ad78f05010
