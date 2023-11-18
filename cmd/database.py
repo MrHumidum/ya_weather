@@ -73,13 +73,17 @@ def insert_weather(a):
             close_database_connection(conn)
 
 
-def clear_weather():
+def clear_database():
     conn = connect_to_database()
     if conn:
         try:
             with conn.cursor() as cur:
                 cur.execute(
                     "DELETE FROM weather",
+                )
+            with conn.cursor() as cur:
+                cur.execute(
+                    "DELETE FROM users",
                 )
         except Exception as e:
             print('Error clear_weather:', e)
